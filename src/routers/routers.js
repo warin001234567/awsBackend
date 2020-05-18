@@ -1,20 +1,95 @@
 const express = require("express");
 const router = new express.Router();
+const Movie = require("../models/movie");
 
-router.get("/", async (req, res) => {
+// get all
+router.get("/movie", async (req, res) => {
   try {
-    res.render("index");
+    const movie = await Movie.find();
+    console.log(movie);
+    res.status(201).send(movie);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(400).send(e);
+  }
+});
+// create new movie
+router.post("/movie", async (req, res) => {
+  try {
+    const movie = new Movie(req.body);
+    console.log(movie);
+    const alreadyhas = await Movie.find({ title: movie.title });
+    if (alreadyhas.length > 0) {
+      return res.status(404).send({ error: "already had that movie" });
+    }
+    await movie.save();
+    res.status(201).send(movie);
+  } catch (e) {
+    res.status(400).send(e);
   }
 });
 
-router.get("/eiei", (req, res) => {
-  res.send("Hello express!!");
+// get movie by id
+router.get("/movie/:id", async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const movie = await Movie.findOne({ _id });
+    console.log(movie);
+    res.status(201).send(movie);
+  } catch (e) {
+    res.status(400).send(e);
+  }
 });
 
-router.get("/help", (req, res) => {
-  res.send("Help page");
+// get movie by name
+router.post("/movie/name", async (req, res) => {
+  console.log(req.body.movieTitle);
+  try {
+    const movie = await Movie.findOne({ title: req.body.movieTitle });
+    console.log(movie);
+    res.status(201).send(movie);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+// update movie by id
+router.put("/movie/update/:id", async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const movie = await Movie.findById(_id).exec();
+
+    let query = { $set: {} };
+    for (let key in req.body) {
+      console.log(movie[key] && movie[key] !== req.body[key]);
+      if (movie[key] && movie[key] !== req.body[key]) {
+        // if the field we have in req.body exists, we're gonna update it
+        query.$set[key] = req.body[key];
+        console.log(query.$set[key]);
+      }
+    }
+    console.log(query);
+    const updatedMovie = await Movie.updateOne({ _id: _id }, query).exec();
+    console.log(updatedMovie);
+
+    res.status(201).send(updatedMovie);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+// delete movie by id
+router.delete("/movie/:id", async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const movie = await Movie.findByIdAndDelete(_id);
+    res.status(201).send(movie);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+router.get("*", (req, res) => {
+  res.send("404");
 });
 
 module.exports = router;
