@@ -7,7 +7,7 @@ const bookRouter = require("./routers/bookRouter");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 const publicDirectoryPath = path.join(__dirname, "../templates/views");
 const publicPath = path.join(__dirname, "../public");
