@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const moment = require("moment");
 
 mongoose.connect(
-  "mongodb://127.0.0.1:27017/webpro_theater",
+  "mongodb://localhost:27017/webpro_theater",
   {
     useNewUrlParser: true,
     useCreateIndex: true,

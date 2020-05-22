@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>.Ticket Theater</title>
+    <link rel="icon" type="image/png" href="resource/icon.png">
+
+    <!-- FRAMEWORK -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto+Condensed" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/style2.css">
+
+    <style type="text/css">
+        .tab {
+            overflow: hidden;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            border-radius: 5px;
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #2138E5;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+
+        .tablinks {
+            width: 10%;
+            margin-right: 4%
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="jumbotron banner">
+        <div class="img"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Alita: Battle Angel</h1>
+                    <p>125 minutes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------- DATE ------------------------->
+    <div style="margin-top: 5vw">
+        <hr>
+        <div class="container">
+            <div class="row">
+                <h5>DATE</h5>
+                <!-- put date here -->
+            </div>
+            <div class="tab">
+                <button class="tablinks active" onclick="openTheater(event, 'Mon')">MON</button>
+                <button class="tablinks" onclick="openTheater(event, 'Tue')">TUE</button>
+                <button class="tablinks" onclick="openTheater(event, 'Wed')">WED</button>
+                <button class="tablinks" onclick="openTheater(event, 'Thu')">THU</button>
+                <button class="tablinks" onclick="openTheater(event, 'Fri')">FRI</button>
+                <button class="tablinks" onclick="openTheater(event, 'Sat')">SAT</button>
+                <button class="tablinks" onclick="openTheater(event, 'Sun')">SUN</button>
+            </div>
+            <!--  <div class="row">
+                <div class="form-group form-group__radiocheck text-center" style="margin: 3vw 2vw; font-weight: bolder; font-size: 0.8vw;">
+                    <input type="radio" name="neu" value="day1" id="radio1" checked>
+                    <label for="radio1" data-title="20 / 02"></label>
+                    <input type="radio" name="neu" value="day1" id="radio2">
+                    <label for="radio2" data-title="21 / 02"></label>
+                    <input type="radio" name="neu" value="day1" id="radio3">
+                    <label for="radio3" data-title="22 / 02"></label>
+                    <input type="radio" name="neu" value="day1" id="radio4">
+                    <label for="radio4" data-title="23 / 02"></label>
+                    <input type="radio" name="neu" value="day1" id="radio5">
+                    <label for="radio5" data-title="24 / 02"></label>
+                    <input type="radio" name="neu" value="day1" id="radio6">
+                    <label for="radio6" data-title="25 / 02"></label>
+                    <input type="radio" name="neu" value="day1" id="radio7">
+                    <label for="radio7" data-title="26 / 02"></label>
+                </div> -->
+        </div>
+    </div>
+    <hr>
+    </div>
+
+    <!-------------------- Theater & Time ----------------------->
+    <div id="Mon" class="tabcontent" style="display: block;">
+        <div class="container need-top-space mx-auto">
+            <div class="row description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+            <div class="row need-top-space need-bottom-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Tue" class="tabcontent">
+        <div class="container need-top-space mx-auto">
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+            <div class="row  need-top-space description-box rounded need-bottom-space ">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Wed" class="tabcontent">
+        <div class="container need-top-space mx-auto">
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+            <div class="row  need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded need-bottom-space">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Thu" class="tabcontent">
+        <div class="container need-top-space mx-auto">
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+            <div class="row description-box need-bottom-space need-top-space rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Fri" class="tabcontent">
+        <div class="container need-top-space mx-auto">
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+            <div class="row  need-top-space description-box rounded need-bottom-space ">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Sat" class="tabcontent">
+        <div class="container need-top-space mx-auto">
+            <div class="row description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+            <div class="row need-top-space need-bottom-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Sun" class="tabcontent">
+        <div class="container need-top-space mx-auto">
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.20</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">14.40</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">15.50</button>
+                </div>
+            </div>
+            <div class="row need-top-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/dolby.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG / TH
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">17.50</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">20.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">22.40</button>
+                </div>
+            </div>
+            <div class="row need-top-space need-bottom-space description-box rounded">
+                <div class="col-2">
+                    <img src="/rsrc/imax.png" class='movie-type'>
+                </div>
+                <div class="col-2">
+                    <img src="/rsrc/volume.svg" class="ikonate">
+                    ENG
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">10.00</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">11.10</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">12.20</button>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-outline-primary text-center time-box">13.30</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row" style="margin-bottom: 8%; margin-top: -4%;">
+            <div class="col-lg-4 text-center">
+                <!-- <button type="button" class="btn btn-outline-info">&#8249;</button> -->
+            </div>
+            <div class="col-lg-4 text-center">
+                <a href="process_2" style="text-decoration: none">
+                    <button type="button" class="btn btn-outline-light btn-lg btn-block" style="font-size:1vw;">
+                        NEXT</button>
+                </a>
+            </div>
+            <div class="col-lg-4 text-center">
+                <!-- <button type="button" class="btn btn-outline-info">&#8250;</button> -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <!---------------------------------------------------FOOTER---------------------------------------------------------------------->
+
+    <footer class="page-footer font-small teal pt-4">
+
+        <div class="container-fluid text-center text-md-left"
+            style="background-color:rgb(14, 13, 13); color: rgb(94, 94, 94); padding: 2% 4%">
+
+            <div class="row text-center">
+                <div class="col-sm">
+                    <img src="/rsrc/logo.png" style="width: 5%; padding:1% 0; opacity: 0.7">
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6 text-muted text-left footer" style="margin-left:10%;">
+                    <div class="row">
+                        <div class="col"><a href="#" style="color: inherit">About</a></div>
+                        <div class="col"><a href="#" style="color: inherit">Home</a></div>
+                        <div class="col"><a href="#" style="color: inherit">Account</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><a href="#" style="color: inherit">Movies</a></div>
+                        <div class="col"><a href="#" style="color: inherit">Now showing</a></div>
+                        <div class="col"><a href="#" style="color: inherit">Support</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><a href="#" style="color: inherit">Promobions</a></div>
+                        <div class="col"><a href="#" style="color: inherit">Coming soon</a></div>
+                        <div class="col"><a href="#" style="color: inherit">Contract us</a></div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3"
+            style="background-color: #232780; color:cornsilk; font-size: 0.8vw; letter-spacing: 0.1em;">
+            © Copyright <b>.TICKET</b> 2019
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+
+    <!------------------------------------------------------------------------------------------------------------------------->
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        function openTheater(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+
+</html>

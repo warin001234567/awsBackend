@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>.Ticket Cineplex</title>
+  <!-- <link rel="icon" type="image/png" href="resource/icon.png"> -->
+
+  <!-- FRAMEWORK -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto+Condensed" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet" />
+
+  <!-- ICON -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+  <style type="text/css">
+    .navbar {
+      -webkit-transition: background 0.5s ease-in-out,
+        padding 0.5s ease-in-out;
+      -moz-transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+      transition: background 0.5s ease-in-out, padding 0.5s ease-in-out;
+    }
+
+    .invisible-fix {
+      visibility: hidden;
+    }
+
+    .visible-fix {
+      visibility: visible;
+    }
+
+    .selecter:link,
+    .selecter:visited {
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .selecter:hover,
+    .selecter:active {
+      background-color: rgba(45, 45, 45, 1);
+      transition: 0.3s background-color;
+    }
+
+    .extendTheater {
+      visibility: hidden;
+    }
+
+    .extendMovie {
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body onload="playVid()">
+  <!------------------------------------------------------ Navbar -------------------------------------------------------->
+  <div>
+    <nav class="navbar navbar-expand-lg justify-content-between" style="position: fixed; width: 100%; z-index: 10;">
+      <a class="navbar-brand m-0 pl-3" href="index.hbs">
+        <img id="logo" width="60%" src="/rsrc/logo.png" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-5 ml-auto pr-5">
+          <li class="nav-item mr-3 invisible-fix">
+            <a onclick="extendTheater()" class="select selecter nav-link" style="
+                  border-bottom: 1px solid white;
+                  width: 100%;
+                  text-align: center;
+                  color: white;
+                ">
+              <span id="theatername">Select Theater</span>
+              <i id="theaterpoint" class="ml-3 fas fa-caret-down"></i>
+            </a>
+          </li>
+          <li class="nav-item invisible-fix mr-3">
+            <a onclick="extendMovie()" class="select selecter nav-link" style="
+                  border-bottom: 1px solid white;
+                  width: 100%;
+                  text-align: center;
+                  color: white;
+                ">
+              <span id="moviename">Select Movie</span>
+              <i id="moviepoint" class="ml-3 fas fa-caret-down"></i>
+            </a>
+          </li>
+          <li class="nav-item invisible-fix mt-2" style="height: 28%;">
+            <a href="" id="" class="select nav-link p-0 mybtn" type="button" data-toggle="collapse"
+              data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <a onclick="bookingNav()" class="select nav-link third text-white" style="height: 30px; padding-top: 0;">
+                Go!</a>
+            </a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <form class="form-inline" id="login-cont">
+            <a id="signinbtn" class="mr-4 text-white"
+              onclick="document.getElementById('modal-wrapper').style.display='block',signin()"
+              style="cursor: pointer;">SIGN IN</a>
+            <a id="signupbtn" class="mr-3 text-white"
+              onclick="document.getElementById('modal-wrapper').style.display='block',signup()"
+              style="cursor: pointer;">SIGN UP</a>
+            <input class="mr-2 myform pl-2 pb-1" type="search" aria-label="Search"
+              style="height: 5%; width: 13vw; border-radius: 45px / 45px;" />
+            <i class="fa fa-search fa-sm m-0" style="color: white; cursor: pointer;" aria-hidden="true"></i>
+          </form>
+        </form>
+      </div>
+    </nav>
+    <div id="extendTheater" class="invisible-fix" style="
+          width: 100%;
+          height: 500px;
+          background-color: black;
+          position: fixed;
+          z-index: 9;
+        ">
+      <div class="container-fluid pt-5 pl-5 pr-5 pb-0">
+        <h2 style="position: fixed; color: white;">Theater</h2>
+        <div class="row flex-row flex-nowrap pl-3 pt-5">
+          <div class="col-3">
+            <div class="row">
+              <h4 style="color: #4040bf; font-family: 'Mitr', sans-serif;">
+                กรุงเทพฯ ในเมือง
+              </h4>
+            </div>
+            <div style="
+                  width: 70%;
+                  height: 5px;
+                  border-top: 2px solid white;
+                  margin-bottom: 10px;
+                "></div>
+            <div class="row" style="
+                  font-size: 1.2vw;
+                  line-height: 0.5vw;
+                  cursor: pointer;
+                  color: white;
+                ">
+              <ul style="list-style: none;">
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ เกตเวย์ บางซื่อ
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    ไอแมกซ์ ควอเทียร์ ซีเนอาร์ต
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    ควอเทียร์ ซีเนอาร์ต
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เอไอเอส ไอแมกซ์ วีอาร์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    พารากอน ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    กรุงศรี ไอแมกซ์ พารากอน ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ สุขุมวิท
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ เซ็นทรัล พระราม 3
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ สามเสน
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row">
+              <h4 style="color: #4040bf; font-family: 'Mitr', sans-serif;">
+                กรุงเทพฯ ตอนเหนือ
+              </h4>
+            </div>
+            <div style="
+                  width: 70%;
+                  height: 5px;
+                  border-top: 2px solid white;
+                  margin-bottom: 10px;
+                "></div>
+            <div class="row" style="
+                  font-size: 1.2vw;
+                  line-height: 0.5vw;
+                  cursor: pointer;
+                  color: white;
+                ">
+              <ul style="list-style: none;">
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ รัชโยธิน
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    กรุงศรี ไอแมกซ์ เมเจอร์ ซีนีเพล็กซ์ รัชโยธิน
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เอสพลานาด ซีนีเพล็กซ์ รัชดาภิเษก
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ แฟชั่น ไอส์แลนด์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ โลตัส บางกะปิ
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    อีสต์วิลล์ ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    พรอมานาด ซีนีเพล็กซ์
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row">
+              <h4 style="color: #4040bf; font-family: 'Mitr', sans-serif;">
+                กรุงเทพฯ ฝั่งตะวันออก
+              </h4>
+            </div>
+            <div style="
+                  width: 70%;
+                  height: 5px;
+                  border-top: 2px solid white;
+                  margin-bottom: 10px;
+                "></div>
+            <div class="row" style="
+                  font-size: 1.2vw;
+                  line-height: 0.5vw;
+                  cursor: pointer;
+                  color: white;
+                ">
+              <ul style="list-style: none;">
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมกา ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    อีจีวี บิ๊กซี สมุทรปราการ
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ โรบินสัน สมุทรปราการ
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    ซีคอน ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ เซ็นทรัล บางนา
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    พาราไดซ์ ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ สำโรง
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ โลตัส ศรีนครินทร์
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row">
+              <h4 style="color: #4040bf; font-family: 'Mitr', sans-serif;">
+                กรุงเทพฯ ฝั่งธนบุรี
+              </h4>
+            </div>
+            <div style="
+                  width: 70%;
+                  height: 5px;
+                  border-top: 2px solid white;
+                  margin-bottom: 10px;
+                "></div>
+            <div class="row" style="
+                  font-size: 1.2vw;
+                  line-height: 0.5vw;
+                  cursor: pointer;
+                  color: white;
+                ">
+              <ul style="list-style: none;">
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    ไอแมกซ์ ไอคอน ซีเนคอนิค
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    ไอคอน ซีเนคอนิค
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ บิ๊กซี สุขสวัสดิ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    แกรนด์ อีจีวี ซีคอน บางแค
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ โลตัส บางปะกอก
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ เซ็นทรัล ปิ่นเกล้า
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ ปิ่นเกล้า
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ เซ็นทรัล พระราม 2
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    อีจีวี บิ๊กซี อ้อมใหญ่
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ โลตัส ศาลายา
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row">
+              <h4 style="color: #4040bf; font-family: 'Mitr', sans-serif;">
+                กรุงเทพฯ-นนทบุรี
+              </h4>
+            </div>
+            <div style="
+                  width: 70%;
+                  height: 5px;
+                  border-top: 2px solid white;
+                  margin-bottom: 10px;
+                "></div>
+            <div class="row" style="
+                  font-size: 1.2vw;
+                  line-height: 0.5vw;
+                  cursor: pointer;
+                  color: white;
+                ">
+              <ul style="list-style: none;">
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ โลตัส บางใหญ่
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    ไอแมกซ์ เวสต์เกต ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เวสต์เกต ซีนีเพล็กซ์
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เอสพลานาด ซีนีเพล็กซ์ งามวงศ์วาน-แคราย
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ แจ้งวัฒนะ
+                  </p>
+                </li>
+                <li onclick="setTheater(this)">
+                  <p style="font-family: 'Mitr', sans-serif;">
+                    เมเจอร์ ซีนีเพล็กซ์ นนทบุรี
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="extendMovie" class="invisible-fix" style="
+          width: 100%;
+          height: 450px;
+          background-color: black;
+          position: fixed;
+          z-index: 9;
+        ">
+      <div class="container-fluid pt-5 pl-5 pr-5 pb-0" id="selectMovie">
+        <h2 style="position: fixed; color: white;">Movie</h2>
+        <div class="row flex-row flex-nowrap pl-3 pt-5">
+          <div v-for="blog in blogSearchResult">
+            <div class="card my-1 pt-2 text-white text-center" onclick="setMovie(this)" style="
+                  height: 95%;
+                  width: 10vw;
+                  margin-right: 2vw;
+                  cursor: pointer;
+                  background-color: transparent;
+                ">
+              <img :src="blog.image" class="card-img-top img-fluid" alt="..." style="
+                    height: auto;
+                    width: 10vw;
+                    object-fit: contain;
+                    margin-top: 0%;
+                  " />
+              <div class="card-body" v-bind:class="{'bg-dark text-white': blog.color}"
+                style="text-align: left !important;">
+                <p id="movietitle" class="card-title" style="font-size: 1.2vw; margin-top: -0.5vw;">
+                  <% blog.title %>
+                </p>
+                <p class="card-text2"><% blog.thtitle %><br /></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------ Banner -------------------------------------------------------->
+  <div class="vid-cont" style="overflow: hidden; width: 100%;">
+    <div id="gradient" style="
+          background-image: linear-gradient(to bottom, transparent, black);
+          width: 100%;
+          z-index: 4;
+          position: absolute;
+          margin-top: 50%;
+        "></div>
+    <img class="fader" id="banner" src="/rsrc/banner.jpg" width="100%" style="position: absolute;" />
+    <img width="30%" src="/rsrc/trailer_logo.png" style="position: absolute; padding-top: 8%; padding-left: 4%;" />
+    <p class="fader" id="release" style="
+          color: white;
+          font-size: 1.4vw;
+          position: absolute;
+          padding-top: 21%;
+          padding-left: 4%;
+          z-index: 5;
+        ">
+      Release Date: 09 / 25 / 2019
+    </p>
+    <p class="fader" id="detail" style="
+          color: white;
+          font-size: 1vw;
+          position: absolute;
+          padding-top: 24%;
+          padding-left: 4%;
+          z-index: 5;
+          line-height: 1.5vw;
+        ">
+      Tim Goodman, a former Pokémon Trainer<br />team up with Detective
+      Pikachu, his<br />
+      father's Pokémon partner to find out what<br />happened to his father,
+      Harry Goodman.
+    </p>
+    <video id="vid" loop width="100%" style="margin-top: -8%; margin-bottom: -8%;">
+      <source src="/rsrc/pokemon.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-----------------------------------------------------Login-Popup ----------------------------------------------------->
+  <div id="modal-wrapper" class="modal">
+    <div class="login-wrap">
+      <div class="login-html">
+        <i class="fas fa-times fa-lg" style="
+              float: right;
+              margin-top: -70px;
+              margin-right: -50px;
+              color: white;
+              cursor: pointer;
+            " onclick="document.getElementById('modal-wrapper').style.display = 'none'"></i>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label for="tab-1" class="tab">Sign
+          In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2" class="tab">Sign Up</label>
+
+        <div class="login-form">
+          <!-- sign in -->
+          <form class="needs-validation" novalidate name="signInForm" onsubmit="signInCheck()">
+            <div class="sign-in-htm">
+              <div class="group">
+                <label for="validationCustom01" class="label">Username</label>
+                <input name="id" type="text" class="form-control input" id="validationCustom01 user"
+                  placeholder="Username" required />
+                <div class="invalid-feedback">
+                  Please provide Username
+                </div>
+                <!-- <label for="user" class="label">Username</label>
+                            <input id="user" type="text" class="input"> -->
+              </div>
+
+              <div class="group">
+                <label for="validationCustom02" class="label">Password</label>
+                <input name="password" type="password" data-type="password" class="form-control input"
+                  id="validationCustom02 pass" placeholder="Password" required />
+                <div class="invalid-feedback">
+                  Please provide Password
+                </div>
+              </div>
+
+              <div class="group">
+                <input id="check" type="checkbox" class="check" checked />
+                <label for="check"><span class="icon"></span> Remember me</label>
+              </div>
+
+              <div class="group">
+                <button class="button" type="submit" style="width: 100%;">
+                  Sign In
+                </button>
+              </div>
+              <div class="hr"></div>
+            </div>
+          </form>
+
+          <!-- sign up -->
+          <form class="needs-validation" novalidate name="signUpForm">
+            <div class="sign-up-htm">
+              <div class="group">
+                <label for="validationCustom01 user" class="label">Username</label>
+                <input type="text" class="form-control input" id="validationCustom01 user" placeholder="Username"
+                  required />
+                <div class="invalid-feedback">
+                  Please provide Username
+                </div>
+              </div>
+
+              <div class="group">
+                <label for="validationCustom02" class="label">Password</label>
+                <input type="password" data-type="password" class="form-control input" id="validationCustom02 pass"
+                  placeholder="Password" required />
+                <div class="invalid-feedback">
+                  Please provide Password
+                </div>
+              </div>
+
+              <div class="group">
+                <label for="validationCustom03" class="label">Confirm Password</label>
+                <input type="password" data-type="password" class="form-control input" id="validationCustom03 pass"
+                  placeholder="Confirm Password" required />
+                <div class="invalid-feedback">
+                  Incorrect Password
+                </div>
+              </div>
+
+              <div class="group">
+                <button class="button" type="submit" style="margin-top: 10%; width: 100%;">
+                  Sign Up
+                </button>
+              </div>
+
+              <div class="hr"></div>
+              <div class="foot-lnk">
+                <label for="tab-1" style="color: rgb(150, 150, 150); cursor: pointer;">Already a Member?</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!------------------------------------------------------ Content ------------------------------------------------------->
+  <div class="tabs" onclick="slideChecked()">
+    <div class="tab-2">
+      <label id="ltab2-1" for="tab2-1" style="font-size: 1.5vw;">Now Showing</label>
+      <input id="tab2-1" name="tabs-two" type="radio" checked="checked" />
+      <div id="slide1">
+        <div class="container-fluid" style="padding-left: 10vw; padding-right: 10vw; margin-top: 2vw;">
+          <div class="row">
+            <div class="col-sm-3" v-for="blog in blogSearchResult">
+              <div class="card my-1 pt-2 bg-dark text-white text-center"
+                onclick="document.body.style.overflow = 'hidden',document.getElementById('content-pop-wrapper').style.display='block',gradientsize()"
+                style="height: 95%; width: 100%; cursor: pointer;">
+                <img :src="blog.image" class="card-img-top img-fluid" alt="..." style="
+                      height: 24vw;
+                      width: 21vw;
+                      object-fit: contain;
+                      margin-top: 0%;
+                    " />
+                <div class="card-body" v-bind:class="{'bg-dark text-white': blog.color}">
+                  <p class="card-title" style="font-size: 1.2vw; margin-top: -0.5vw;">
+                    <%blog.title %>
+                  </p>
+                  <p class="card-text">
+                    <% blog.thtitle %><br />
+                    <small class="text-muted">Release Date: <% blog.releasedate %></small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-2">
+      <label id="ltab2-2" for="tab2-2" style="font-size: 1.5vw;">Coming Soon</label>
+      <input id="tab2-2" name="tabs-two" type="radio" />
+      <div id="slide2">
+        <div class="container-fluid" style="padding-left: 10vw; padding-right: 10vw; margin-top: 2vw;">
+          <div class="row">
+            <div class="col-sm-3" v-for="blog in blogSearchResult">
+              <div class="card my-3 pt-2 bg-dark text-white text-center"
+                onclick="document.body.style.overflow = 'hidden',document.getElementById('content-pop-wrapper').style.display='block',gradientsize()"
+                style="height: 95%; width: 100%; cursor: pointer;">
+                <img :src="blog.image" class="card-img-top img-fluid" alt="..." style="
+                      height: 24vw;
+                      width: 21vw;
+                      object-fit: contain;
+                      margin-top: 0%;
+                    " />
+                <div class="card-body" v-bind:class="{'bg-dark text-white': blog.color}">
+                  <p class="card-title" style="font-size: 1.2vw; margin-top: -0.5vw;">
+                    <% blog.title %>
+                  </p>
+                  <p class="card-text">
+                    <% blog.thtitle %><br />
+                    <small class="text-muted">Release Date:<% blog.releasedate %></small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-2">
+      <label id="ltab2-3" for="tab2-3" style="font-size: 1.5vw;">IMAX</label>
+      <input id="tab2-3" name="tabs-two" type="radio" />
+      <div id="slide3">
+        <div class="container-fluid" style="padding-left: 10vw; padding-right: 10vw; margin-top: 2vw;">
+          <div class="row">
+            <div class="col-sm-3" v-for="blog in blogSearchResult">
+              <div class="card my-3 pt-2 bg-dark text-white text-center"
+                onclick="document.body.style.overflow = 'hidden',document.getElementById('content-pop-wrapper').style.display='block',gradientsize()"
+                style="height: 95%; width: 100%; cursor: pointer;">
+                <img :src="blog.image" class="card-img-top img-fluid" alt="..." style="
+                      height: 24vw;
+                      width: 21vw;
+                      object-fit: contain;
+                      margin-top: 0%;
+                    " />
+                <div class="card-body" v-bind:class="{'bg-dark text-white': blog.color}">
+                  <p class="card-title" style="font-size: 1.2vw; margin-top: -0.5vw;">
+                    <% blog.title %>
+                  </p>
+                  <p class="card-text">
+                    <% blog.thtitle %><br />
+                    <small class="text-muted">Release Date: <% blog.releasedate %></small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-2">
+      <label id="ltab2-4" for="tab2-4" style="font-size: 1.5vw;">4DX</label>
+      <input id="tab2-4" name="tabs-two" type="radio" />
+      <div id="slide4">
+        <div class="container-fluid" style="padding-left: 10vw; padding-right: 10vw; margin-top: 2vw;">
+          <div class="row">
+            <div class="col-sm-3" v-for="blog in blogSearchResult">
+              <div class="card my-3 pt-2 bg-dark text-white text-center"
+                onclick="document.body.style.overflow = 'hidden',document.getElementById('content-pop-wrapper').style.display='block',gradientsize()"
+                style="height: 95%; width: 100%; cursor: pointer;">
+                <img :src="blog.image" class="card-img-top img-fluid" alt="..." style="
+                      height: 24vw;
+                      width: 21vw;
+                      object-fit: contain;
+                      margin-top: 0%;
+                    " />
+                <div class="card-body" v-bind:class="{'bg-dark text-white': blog.color}">
+                  <p class="card-title" style="font-size: 1.2vw; margin-top: -0.5vw;">
+                    <% blog.title %>
+                  </p>
+                  <p class="card-text">
+                    <% blog.thtitle %><br />
+                    <small class="text-muted">Release Date: <% blog.releasedate %></small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-------------------------------------------------- Content Pop-up ---------------------------------------------------->
+  <div id="content-pop-wrapper" class="modal">
+    <i class="fas fa-times fa-lg" style="
+          position: fixed;
+          right: 8vw;
+          top: 8vh;
+          color: white;
+          cursor: pointer;
+          z-index: 12;
+        "
+      onclick="document.body.style.overflow = 'scroll',stopfrombtn(),document.getElementById('content-pop-wrapper').style.display = 'none'"></i>
+    <i class="far fa-play-circle fa-8x playbtn" onclick="playfrombtn()"></i>
+    <i class="far fa-pause-circle fa-8x pausebtn" onclick="stopfrombtn()" style="visibility: hidden;"></i>
+    <div id="content-pop" style="
+          width: 90%;
+          background-color: black;
+          margin-top: 2%;
+          margin-left: 5%;
+          color: white;
+        ">
+      <div class="trailer-cont" style="overflow: hidden; width: 100%;" onclick="this.play();">
+        <div id="gradient2" style="
+              background-image: linear-gradient(to bottom, transparent, black);
+              width: 90vw;
+              z-index: 7;
+              position: absolute;
+            "></div>
+        <img width="40%" src="/rsrc/alita_logo.png" style="
+              position: absolute;
+              padding-top: 6%;
+              padding-left: 3%;
+              margin-left: -5%;
+            " />
+        <p style="
+              color: white;
+              font-size: 1.3vw;
+              position: absolute;
+              margin-top: 22%;
+              margin-left: 5.5%;
+              z-index: 5;
+            ">
+          Release Date: 13 / 02 / 2019
+        </p>
+        <p style="
+              color: white;
+              font-size: 1vw;
+              position: absolute;
+              margin-top: 25%;
+              margin-left: 5.5%;
+              z-index: 5;
+              line-height: 1.5vw;
+            ">
+          A deactivated female cyborg is revived, but cannot <br />
+          remember anything of her past life and goes on a <br />
+          quest to find out who she is.
+        </p>
+        <video id="trailer" width="100%" poster="/rsrc/alitabanner.jpg" style="margin-top: -8%; margin-bottom: -8%;">
+          <source src="/rsrc/alitaTrailer.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="row mt-5 mb-5 pb-5">
+            <div class="col-sm-12 pl-5">
+              <span style="
+                    font-size: 2.5vw;
+                    margin-left: 4vw;
+                    margin-bottom: 2vh;
+                    text-shadow: 2px 2px 50px lightblue;
+                  ">Storyline</span>
+              <div class="row" style="margin-left: 2.5vw; margin-top: 2vw;">
+                <div class="col-sm-8" style="font-size: 1.1vw;">
+                  &emsp;&emsp;Alita is a creation from an age of despair.
+                  Found by the mysterious Dr. Ido while trolling for cyborg
+                  parts, Alita becomes a lethal, dangerous being. She cannot
+                  remember who she is, or where she came from. But to Dr. Ido,
+                  the truth is all too clear. She is the one being who can
+                  break the cycle of death and destruction left behind from
+                  Tiphares. But to accomplish her true purpose, she must fight
+                  and kill. And that is where Alita's true significance comes
+                  to bear. She is an angel from heaven. She is an angel of
+                  death.
+                </div>
+                <div class="col-sm-3 pl-5 mb-2" style="margin-left: 2vw;">
+                  <div class="row">
+                    <a class="mybtn" type="button">
+                      <a onclick="bookingPop()" class="third" style="
+                            width: 80%;
+                            font-size: 1.2vw;
+                            height: 50px;
+                            padding: 3%;
+                          ">Book This</a>
+                    </a>
+                  </div>
+                  <div class="row mt-4">
+                    <a class="mybtn2" type="button">
+                      <a class="second" style="width: 80%; height: 30px;">
+                        <i class="far fa-heart"></i>Like</a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="col-sm-7 pl-5">
+            <span style="
+                  font-size: 2.2vw;
+                  margin-left: 2.5vw;
+                  margin-bottom: 2vh;
+                  text-shadow: 2px 2px 50px lightblue;
+                ">Details</span>
+            <div class="row" style="margin-left: 1.5vw; margin-top: 2vw; margin-bottom: 10%;">
+              <div class="col-sm-3" style="font-size: 1.2vw; font-weight: bolder;">
+                Production : <br />
+                Genre : <br />
+                Runtime : <br />
+                Rating : <br />
+                Director : <br />
+                Writing Credits : <br />
+                <br />
+                <br />
+                <br />
+              </div>
+              <div class="col-sm-9" style="
+                    font-size: 1.2vw;
+                    font-weight: lighter;
+                    color: rgb(170, 170, 170);
+                  ">
+                Lightstorm Entertainment <br />
+                Action, Adventure, Sci-Fi, Thriller, Romance <br />
+                122 min <br />
+                PG-13 <br />
+                Robert &nbsp;&nbsp;&nbsp;Rodriguez<br />
+                James &nbsp;&nbsp;&nbsp;Cameron <br />
+                Laeta &nbsp;&nbsp;&nbsp;Kalogridis <br />
+                Robert &nbsp;&nbsp;&nbsp;Rodriguez <br />
+                Yukito &nbsp;&nbsp;&nbsp;Kishiro <br />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <span style="
+                  font-size: 2.5vw;
+                  margin-left: -2vw;
+                  text-shadow: 2px 2px 50px lightblue;
+                ">Cast</span>
+            <div class="row" style="margin-left: -3vw; margin-top: 2vw; margin-bottom: 10%;">
+              <div class="col-sm-5" style="font-size: 1.2vw;">
+                Rosa &nbsp;&nbsp;&nbsp;Salazar <br />
+                Christoph &nbsp;&nbsp;&nbsp;Waltz <br />
+                Jennifer &nbsp;&nbsp;&nbsp;Connelly <br />
+                Mahershala &nbsp;&nbsp;&nbsp;Ali <br />
+                Ed &nbsp;&nbsp;&nbsp;Skrein <br />
+                Jackie &nbsp;&nbsp;&nbsp;Earle Haley <br />
+                Keean &nbsp;&nbsp;&nbsp;Johnson <br />
+                Jorge &nbsp;&nbsp;&nbsp;Lendeborg Jr. <br />
+                Lana &nbsp;&nbsp;&nbsp;Condor <br />
+                Idara &nbsp;&nbsp;&nbsp;Victor <br />
+              </div>
+              <div class="col-sm-2" style="font-size: 1.2vw;">
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+                ... <br />
+              </div>
+              <div class="col-sm-5" style="font-size: 1.2vw; color: rgb(170, 170, 170);">
+                Alita <br />
+                Dr. Dyson Ido <br />
+                Chiren <br />
+                Vector <br />
+                Zapan <br />
+                Grewishka <br />
+                Hugo <br />
+                Tanji <br />
+                Koyomi <br />
+                Nurse Gerhad <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!---------------------------------------------------FOOTER------------------------------------------------------------->
+
+  <footer class="page-footer font-small teal pt-4">
+    <div class="container-fluid text-center text-md-left" style="
+          background-color: rgb(14, 13, 13);
+          color: rgb(94, 94, 94);
+          padding: 2% 4%;
+        ">
+      <div class="row text-center">
+        <div class="col-sm">
+          <img src="/rsrc/logo.png" style="width: 5%; padding: 1% 0; opacity: 0.7;" />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-6 text-muted text-left footer" style="margin-left: 10%;">
+          <div class="row">
+            <div class="col">
+              <a href="#" style="color: inherit;">About</a>
+            </div>
+            <div class="col">
+              <a href="#" style="color: inherit;">Home</a>
+            </div>
+            <div class="col">
+              <a href="#" style="color: inherit;">Account</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a href="#" style="color: inherit;">Movies</a>
+            </div>
+            <div class="col">
+              <a href="#" style="color: inherit;">Now showing</a>
+            </div>
+            <div class="col">
+              <a href="#" style="color: inherit;">Support</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a href="#" style="color: inherit;">Promobions</a>
+            </div>
+            <div class="col">
+              <a href="#" style="color: inherit;">Coming soon</a>
+            </div>
+            <div class="col">
+              <a href="#" style="color: inherit;">Contract us</a>
+            </div>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="
+          background-color: #232780;
+          color: cornsilk;
+          font-size: 0.8vw;
+          letter-spacing: 0.1em;
+        ">
+      © Copyright <b>.TICKET</b> 2019
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+  <!------------------------------------------------------ Script -------------------------------------------------------->
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <!-- Vue Js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- My script -->
+  <script type="text/javascript">
+    // Set style
+    $("#ltab2-1").css("color", "rgba(255, 255, 255, 1)"); // Add checked effect (only effect)
+
+    // Vue Data
+    var vm = new Vue({
+      // Vue content card
+      el: "#slide1", // Data for slide 1
+      data: {
+        blogs: [
+          {
+            id: 1,
+            title: "Alita Battle Angel",
+            thtitle: "อลิตา แบทเทิล แองเจิล",
+            releasedate: " 13/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Alita.jpg",
+            color: false,
+          },
+          {
+            id: 2,
+            title: "Pee Nak",
+            thtitle: "พี่นาค",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/P-Nak.jpg",
+            color: false,
+          },
+          {
+            id: 3,
+            title: "Friend Zone",
+            thtitle: "เฟรนด์โซน... ระวังสิ้นสุดทางเพื่อน",
+            releasedate: " 14/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/F-Zone.jpg",
+            color: false,
+          },
+          {
+            id: 4,
+            title: "The upside",
+            thtitle: "ดิ อัพไซด์",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Upside.jpg",
+            color: false,
+          },
+          {
+            id: 5,
+            title: "The Favourite",
+            thtitle: "อีเสน่ห์ร้าย",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/TheFav.jpg",
+            color: false,
+          },
+          {
+            id: 6,
+            title: "The Quake",
+            thtitle: "มหาวิบัติวันสิ้นโลก",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Quake.jpg",
+            color: false,
+          },
+          {
+            id: 7,
+            title: "Cafe Funiculi Funicula",
+            thtitle: "เพียงชั่วเวลากาแฟยังอุ่น",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Cafe.jpg",
+            color: false,
+          },
+          {
+            id: 8,
+            title: "How To Train Your Dragon: 3",
+            thtitle: "อภินิหารไวกิ้งพิชิตมังกร 3",
+            releasedate: " 31/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Dragon.jpg",
+            color: false,
+          },
+          {
+            id: 9,
+            title: "The Lego Movie 2",
+            thtitle: "เดอะ เลโก้ มูฟวี่ 2",
+            releasedate: " 07/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Lego.jpg",
+            color: false,
+          },
+          {
+            id: 10,
+            title: "Bohemian Rhapsody",
+            thtitle: "โบฮีเมียน ราปโซดี",
+            releasedate: " 01/11/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Bohemian.jpg",
+            color: false,
+          },
+          {
+            id: 11,
+            title: "Green Book",
+            thtitle: "กรีนบุ๊ค",
+            releasedate: " 03/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Greenbook.jpg",
+            color: false,
+          },
+          {
+            id: 12,
+            title: "Spider-Man: Into the Spider-Verse",
+            thtitle: "สไปเดอร์-แมน ผงาดสู่จักรวาล-แมงมุม",
+            releasedate: " 10/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/SpiderMan.jpg",
+            color: false,
+          },
+          {
+            id: 13,
+            title: "First Man",
+            thtitle: "มนุษย์คนแรกบนดวงจันทร์",
+            releasedate: " 18/10/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Firstman.jpg",
+            color: false,
+          },
+          {
+            id: 14,
+            title: "A Star is born",
+            thtitle: "อะ สตาร์ อีส บอร์น",
+            releasedate: " 11/10/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Starisborn.jpg",
+            color: false,
+          },
+        ],
+        selects: [],
+        tooManyPost: false,
+        searchText: "",
+        testapi: []
+      },
+      delimiters: ["<%", "%>"],
+      mounted: async function () {
+        const { data } = await axios.get("http://localhost:3000/movie")
+        console.log(data)
+        this.testapi = data
+      },
+      methods: {
+        changeBGColor(blog) {
+          if (blog.color === true) {
+            blog.color = false;
+            console.log("change to f");
+          } else {
+            blog.color = true;
+            console.log("change to t");
+          }
+        },
+        showComment() {
+          console.log("show comment");
+        },
+      },
+      computed: {
+        blogSearchResult() {
+          return this.blogs.filter((blog) => {
+            let searchText = this.searchText.toLowerCase();
+            let isMatchTitle = blog.title.toLowerCase().includes(searchText);
+            let isMatchContent = blog.content
+              .toLowerCase()
+              .includes(searchText);
+            console.log(isMatchContent);
+            return isMatchTitle | isMatchContent;
+          });
+        },
+      },
+      watch: {},
+    });
+    var vm2 = new Vue({
+      // Vue content card
+      el: "#slide2", // Data for slide 2
+      delimiters: ["<%", "%>"],
+      data: {
+        blogs: [
+          {
+            id: 1,
+            title: "Captain Marvel",
+            thtitle: "กัปตันมาร์เวล",
+            releasedate: " 06/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/CapMar.jpg",
+            color: false,
+          },
+          {
+            id: 2,
+            title: "The Happytime Murders",
+            thtitle: "ตายละหว่าใครฆ่ามัพเพตส์",
+            releasedate: " 28/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/HappyMur.jpg",
+            color: false,
+          },
+          {
+            id: 3,
+            title: "Vox Lux",
+            thtitle: "เกิดมาเพื่อร้องเพลง",
+            releasedate: " 28/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Voxlux.jpg",
+            color: false,
+          },
+          {
+            id: 4,
+            title: "Happy Death Day 2U",
+            thtitle: "สุขสันต์วันตาย 2",
+            releasedate: " 28/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Hdd2u.jpg",
+            color: false,
+          },
+          {
+            id: 5,
+            title: "The World Is Yours",
+            thtitle: "หลบหน่อยแม่จะปล้น",
+            releasedate: " 01/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Twiy.png",
+            color: false,
+          },
+          {
+            id: 6,
+            title: "Cold Pursuit",
+            thtitle: "แค้นลั่นนรก",
+            releasedate: " 07/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/ColdP.jpg",
+            color: false,
+          },
+          {
+            id: 7,
+            title: "City Hunter",
+            thtitle: "City Hunter",
+            releasedate: " 14/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/CityH.jpg",
+            color: false,
+          },
+          {
+            id: 8,
+            title: "Inhuman Kiss",
+            thtitle: "แสงกระสือ",
+            releasedate: " 14/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/InhuK.jpg",
+            color: false,
+          },
+          {
+            id: 9,
+            title: "The Kid Who Would Be King",
+            thtitle: "จากเด็กน้อยสู่จอมราชันย์",
+            releasedate: " 21/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/KidKing.jpg",
+            color: false,
+          },
+          {
+            id: 10,
+            title: "Captive State",
+            thtitle: "Captive State",
+            releasedate: " 21/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/CaptSt.jpg",
+            color: false,
+          },
+        ],
+        selects: [],
+        tooManyPost: false,
+        searchText: "",
+      },
+      methods: {
+        changeBGColor(blog) {
+          if (blog.color === true) {
+            blog.color = false;
+            console.log("change to f");
+          } else {
+            blog.color = true;
+            console.log("change to t");
+          }
+        },
+        showComment() {
+          console.log("show comment");
+        },
+      },
+      computed: {
+        blogSearchResult() {
+          return this.blogs.filter((blog) => {
+            let searchText = this.searchText.toLowerCase();
+            let isMatchTitle = blog.title.toLowerCase().includes(searchText);
+            let isMatchContent = blog.content
+              .toLowerCase()
+              .includes(searchText);
+            console.log(isMatchContent);
+            return isMatchTitle | isMatchContent;
+          });
+        },
+      },
+      watch: {},
+    });
+    var vm3 = new Vue({
+      // Vue content card
+      el: "#slide3", // Data for slide 3
+      delimiters: ["<%", "%>"],
+      data: {
+        blogs: [
+          {
+            id: 1,
+            title: "Captain Marvel",
+            thtitle: "กัปตันมาร์เวล",
+            releasedate: " 06/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/IMAX/CapMar.jpg",
+            color: false,
+          },
+          {
+            id: 2,
+            title: "Alita Battle Angel",
+            thtitle: "อลิตา แบทเทิล แองเจิล",
+            releasedate: " 13/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/IMAX/Alita.jpg",
+            color: false,
+          },
+          {
+            id: 3,
+            title: "First Man",
+            thtitle: "มนุษย์คนแรกบนดวงจันทร์",
+            releasedate: " 18/10/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/IMAX/FirstMan.jpg",
+            color: false,
+          },
+          {
+            id: 4,
+            title: "Bohemian Rhapsody",
+            thtitle: "โบฮีเมียน ราปโซดี",
+            releasedate: " 01/11/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/IMAX/Bohemian.jpg",
+            color: false,
+          },
+          {
+            id: 5,
+            title: "How To Train Your Dragon: 3",
+            thtitle: "อภินิหารไวกิ้งพิชิตมังกร 3",
+            releasedate: " 31/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Dragon.jpg",
+            color: false,
+          },
+        ],
+        selects: [],
+        tooManyPost: false,
+        searchText: "",
+      },
+      methods: {
+        changeBGColor(blog) {
+          if (blog.color === true) {
+            blog.color = false;
+            console.log("change to f");
+          } else {
+            blog.color = true;
+            console.log("change to t");
+          }
+        },
+        showComment() {
+          console.log("show comment");
+        },
+      },
+      computed: {
+        blogSearchResult() {
+          return this.blogs.filter((blog) => {
+            let searchText = this.searchText.toLowerCase();
+            let isMatchTitle = blog.title.toLowerCase().includes(searchText);
+            let isMatchContent = blog.content
+              .toLowerCase()
+              .includes(searchText);
+            console.log(isMatchContent);
+            return isMatchTitle | isMatchContent;
+          });
+        },
+      },
+      watch: {},
+    });
+    var vm4 = new Vue({
+      // Vue content card
+      el: "#slide4", // Data for slide 4
+      delimiters: ["<%", "%>"],
+      data: {
+        blogs: [
+          {
+            id: 1,
+            title: "Captain Marvel",
+            thtitle: "กัปตันมาร์เวล",
+            releasedate: " 06/03/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/CapMar.jpg",
+            color: false,
+          },
+          {
+            id: 2,
+            title: "Alita Battle Angel",
+            thtitle: "อลิตา แบทเทิล แองเจิล",
+            releasedate: " 13/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Alita.jpg",
+            color: false,
+          },
+          {
+            id: 3,
+            title: "How To Train Your Dragon: 3",
+            thtitle: "อภินิหารไวกิ้งพิชิตมังกร 3",
+            releasedate: " 31/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Dragon.jpg",
+            color: false,
+          },
+          {
+            id: 4,
+            title: "The Lego Movie 2",
+            thtitle: "เดอะ เลโก้ มูฟวี่ 2",
+            releasedate: " 07/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Lego.jpg",
+            color: false,
+          },
+        ],
+        selects: [],
+        tooManyPost: false,
+        searchText: "",
+      },
+      methods: {
+        changeBGColor(blog) {
+          if (blog.color === true) {
+            blog.color = false;
+            console.log("change to f");
+          } else {
+            blog.color = true;
+            console.log("change to t");
+          }
+        },
+        showComment() {
+          console.log("show comment");
+        },
+      },
+      computed: {
+        blogSearchResult() {
+          return this.blogs.filter((blog) => {
+            let searchText = this.searchText.toLowerCase();
+            let isMatchTitle = blog.title.toLowerCase().includes(searchText);
+            let isMatchContent = blog.content
+              .toLowerCase()
+              .includes(searchText);
+            console.log(isMatchContent);
+            return isMatchTitle | isMatchContent;
+          });
+        },
+      },
+      watch: {},
+    });
+    var vm5 = new Vue({
+      // Vue content card
+      el: "#selectMovie", // Data for slide 1
+      delimiters: ["<%", "%>"],
+      data: {
+        blogs: [
+          {
+            id: 1,
+            title: "Alita Battle Angel",
+            thtitle: "อลิตา แบทเทิล แองเจิล",
+            releasedate: " 13/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Alita.jpg",
+            color: false,
+          },
+          {
+            id: 2,
+            title: "Pee Nak",
+            thtitle: "พี่นาค",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/P-Nak.jpg",
+            color: false,
+          },
+          {
+            id: 3,
+            title: "Friend Zone",
+            thtitle: "เฟรนด์โซน... ระวังสิ้นสุดทางเพื่อน",
+            releasedate: " 14/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/F-Zone.jpg",
+            color: false,
+          },
+          {
+            id: 4,
+            title: "The upside",
+            thtitle: "ดิ อัพไซด์",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Upside.jpg",
+            color: false,
+          },
+          {
+            id: 5,
+            title: "The Favourite",
+            thtitle: "อีเสน่ห์ร้าย",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/TheFav.jpg",
+            color: false,
+          },
+          {
+            id: 6,
+            title: "The Quake",
+            thtitle: "มหาวิบัติวันสิ้นโลก",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Quake.jpg",
+            color: false,
+          },
+          {
+            id: 7,
+            title: "Cafe Funiculi Funicula",
+            thtitle: "เพียงชั่วเวลากาแฟยังอุ่น",
+            releasedate: " 21/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Cafe.jpg",
+            color: false,
+          },
+          {
+            id: 8,
+            title: "How To Train Your Dragon3",
+            thtitle: "อภินิหารไวกิ้งพิชิตมังกร 3",
+            releasedate: " 31/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Dragon.jpg",
+            color: false,
+          },
+          {
+            id: 9,
+            title: "The Lego Movie 2",
+            thtitle: "เดอะ เลโก้ มูฟวี่ 2",
+            releasedate: " 07/02/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Lego.jpg",
+            color: false,
+          },
+          {
+            id: 10,
+            title: "Bohemian Rhapsody",
+            thtitle: "โบฮีเมียน ราปโซดี",
+            releasedate: " 01/11/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Bohemian.jpg",
+            color: false,
+          },
+          {
+            id: 11,
+            title: "Green Book",
+            thtitle: "กรีนบุ๊ค",
+            releasedate: " 03/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Greenbook.jpg",
+            color: false,
+          },
+          {
+            id: 12,
+            title: "Spider-Man: Into the Spider-Verse",
+            thtitle: "สไปเดอร์-แมน",
+            releasedate: " 10/01/19",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/SpiderMan.jpg",
+            color: false,
+          },
+          {
+            id: 13,
+            title: "First Man",
+            thtitle: "มนุษย์คนแรกบนดวงจันทร์",
+            releasedate: " 18/10/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Firstman.jpg",
+            color: false,
+          },
+          {
+            id: 14,
+            title: "A Star is born",
+            thtitle: "อะ สตาร์ อีส บอร์น",
+            releasedate: " 11/10/18",
+            content: "I love Vue.js. It is so cool and easy!",
+            image: "/rsrc/poster/Starisborn.jpg",
+            color: false,
+          },
+        ],
+        selects: [],
+        tooManyPost: false,
+        searchText: "",
+      },
+      methods: {
+        changeBGColor(blog) {
+          if (blog.color === true) {
+            blog.color = false;
+            console.log("change to f");
+          } else {
+            blog.color = true;
+            console.log("change to t");
+          }
+        },
+        showComment() {
+          console.log("show comment");
+        },
+      },
+      computed: {
+        blogSearchResult() {
+          return this.blogs.filter((blog) => {
+            let searchText = this.searchText.toLowerCase();
+            let isMatchTitle = blog.title.toLowerCase().includes(searchText);
+            let isMatchContent = blog.content
+              .toLowerCase()
+              .includes(searchText);
+            console.log(isMatchContent);
+            return isMatchTitle | isMatchContent;
+          });
+        },
+      },
+      watch: {},
+    });
+
+    // pop up close when click space outside div
+    var modal = document.getElementById("modal-wrapper");
+    var contpop = document.getElementById("content-pop-wrapper");
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      } else if (event.target == contpop) {
+        (document.body.style.overflowY = "scroll"), stopfrombtn();
+        contpop.style.display = "none";
+      }
+    };
+    $(document).keyup(function (e) {
+      if (e.key === "Escape") {
+        // escape key maps to keycode `27`
+        modal.style.display = "none";
+        contpop.style.display = "none";
+        movieflipout();
+        $("#extendMovie").removeClass("visible-fix");
+        $("#extendMovie").addClass("invisible-fix");
+        theaterflipout();
+        $("#extendTheater").removeClass("visible-fix");
+        $("#extendTheater").addClass("invisible-fix");
+
+        (document.body.style.overflowY = "scroll"), stopfrombtn();
+      }
+    });
+    //play and pause video function
+    function isInView(el) {
+      var rect = el.getBoundingClientRect(); // absolute position of video element
+      return !(rect.top > $(window).height() || rect.bottom < 0); // visible(True) or invisible(False)
+    }
+    $(document).on("scroll", function () {
+      $("video").each(function () {
+        if (isInView($(this)[0])) {
+          // if visible (on screen)
+          var figure = $(".vid-cont").hover(hoverVideo, hideVideo);
+          var figure2 = $(".navbar").hover(hoverVideo, hideVideo);
+          function hoverVideo(e) {
+            $("video", this).get(0).play();
+            $(".fader").fadeOut(500);
+          }
+
+          function hideVideo(e) {
+            $("video", this).get(0).pause();
+            $(".fader").fadeIn(500);
+          }
+        } else {
+          // if invisible (out of the screen)
+          if (!$(this)[0].paused) {
+            $(this)[0].pause();
+            $(".fader").fadeIn(500);
+          }
+        }
+      });
+    });
+
+    // Play video when load the page delay 3 sec + 2 sec(release date delay)
+    function playVid() {
+      setTimeout(function () {
+        document.getElementById("vid").play();
+        $("#detail").fadeOut();
+        $("#banner").fadeOut();
+        $("#release").fadeOut(2000);
+      }, 3000);
+    }
+
+    // Navbar controller
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 0) {
+          $(".navbar").addClass("solid-nav"); // add background
+          $(".navbar").addClass("pt-3"); // add padding top
+          $(".select").removeClass("invisible-fix"); // remove visibility: hidden (movie, theater, button)
+          $(".select").addClass("visible-fix"); // add visibility: visible (movie, theater, button)
+        } else {
+          $(".navbar").removeClass("solid-nav");
+          $(".navbar").removeClass("pt-3");
+          $(".select").removeClass("visible-fix");
+          $(".select").addClass("invisible-fix");
+        }
+      });
+    });
+
+    // Slide Tab
+    function slideChecked() {
+      var ch1 = document.getElementById("tab2-1").checked;
+      if (ch1 == true) {
+        $("#ltab2-1").css("color", "rgba(255, 255, 255, 1)"); // set style for checked element
+        $("#ltab2-2").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-3").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-4").css("color", "rgba(255, 255, 255, 0.4)");
+      }
+      var ch2 = document.getElementById("tab2-2").checked;
+      if (ch2 == true) {
+        $("#ltab2-1").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-2").css("color", "rgba(255, 255, 255, 1)");
+        $("#ltab2-3").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-4").css("color", "rgba(255, 255, 255, 0.4)");
+      }
+      var ch3 = document.getElementById("tab2-3").checked;
+      if (ch3 == true) {
+        $("#ltab2-1").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-2").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-3").css("color", "rgba(255, 255, 255, 1)");
+        $("#ltab2-4").css("color", "rgba(255, 255, 255, 0.4)");
+      }
+      var ch4 = document.getElementById("tab2-4").checked;
+      if (ch4 == true) {
+        $("#ltab2-1").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-2").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-3").css("color", "rgba(255, 255, 255, 0.4)");
+        $("#ltab2-4").css("color", "rgba(255, 255, 255, 1)");
+      }
+    }
+
+    //some add bg color script
+    $(".navbar-toggler").click(function () {
+      $("nav").toggleClass("navbar-change-color"); // add background
+    });
+
+    //set gradient height base on parent
+    $(document).ready(function () {
+      $("#gradient").css({ height: $("#banner").height() * 0.5 + "px" });
+      $("#gradient").css({
+        "margin-top":
+          $("#banner").height() - $("#gradient").height() + 10 + "px",
+      });
+    });
+    $(window).on("resize", function () {
+      $("#gradient").css({ height: $("#banner").height() * 0.5 + "px" });
+      $("#gradient").css({
+        "margin-top":
+          $("#banner").height() - $("#gradient").height() + 10 + "px",
+      });
+    });
+    //set gradient2 height base on parent
+    function gradientsize() {
+      $("#gradient2").css({ width: $(".trailer-cont").width() + "px" });
+      $("#gradient2").css({
+        height: $(".trailer-cont").height() * 0.5 + "px",
+      });
+      $("#gradient2").css({
+        "margin-top":
+          $(".trailer-cont").height() - $("#gradient2").height() + 10 + "px",
+      });
+    }
+    $(window).on("resize", function () {
+      $("#gradient2").css({ width: $(".trailer-cont").width() + "px" });
+      $("#gradient2").css({
+        height: $(".trailer-cont").height() * 0.5 + "px",
+      });
+      $("#gradient2").css({
+        "margin-top":
+          $(".trailer-cont").height() - $("#gradient2").height() + 10 + "px",
+      });
+    });
+
+    // Sign in - Sign up Controller
+    (function () {
+      "use strict";
+      window.addEventListener(
+        "load",
+        function () {
+          var forms = document.getElementsByClassName("needs-validation");
+          var validation = Array.prototype.filter.call(forms, function (
+            form
+          ) {
+            form.addEventListener(
+              "submit",
+              function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add("was-validated");
+              },
+              false
+            );
+          });
+        },
+        false
+      );
+    })();
+    function signup() {
+      document.getElementById("tab-1").checked = false;
+      document.getElementById("tab-2").checked = true;
+    }
+    function signin() {
+      document.getElementById("tab-2").checked = false;
+      document.getElementById("tab-1").checked = true;
+    }
+
+    // Pop up pla - puase btn control
+    function playfrombtn() {
+      $("#vid").get(0).pause();
+      $("#trailer").get(0).play();
+      $(".fa-pause-circle").css("visibility", "visible");
+      $(".fa-pause-circle").css("color", "rgba(255,255,255,.2)");
+      $(".fa-play-circle").css("visibility", "hidden");
+    }
+    function stopfrombtn() {
+      $("#trailer").get(0).pause();
+      $(".fa-pause-circle").css("visibility", "hidden");
+      $(".fa-play-circle").css("visibility", "visible");
+    }
+    // Extend Theater
+    function extendTheater() {
+      if ($("#extendTheater").hasClass("invisible-fix")) {
+        document.body.style.overflow = "hidden";
+        document.getElementById("extendTheater").style.overflowX = "scroll";
+        theaterflipin();
+        $("#extendTheater").css({ "margin-top": $("nav").height() + "px" });
+        $("#extendTheater").removeClass("invisible-fix"); // remove visibility: hidden (movie, theater, button)
+        $("#extendTheater").addClass("visible-fix"); // add visibility: visible (movie, theater, button)
+        if ($("#extendMovie").hasClass("visible-fix")) {
+          movieflipout();
+          $("#extendMovie").removeClass("visible-fix");
+          $("#extendMovie").addClass("invisible-fix");
+        }
+      } else if ($("#extendTheater").hasClass("visible-fix")) {
+        document.body.style.overflowY = "scroll";
+        theaterflipout();
+        $("#extendTheater").removeClass("visible-fix");
+        $("#extendTheater").addClass("invisible-fix");
+      }
+    }
+    function extendMovie() {
+      if ($("#extendMovie").hasClass("invisible-fix")) {
+        document.body.style.overflow = "hidden";
+        document.getElementById("extendMovie").style.overflowX = "scroll";
+        movieflipin();
+        $("#extendMovie").css({ "margin-top": $("nav").height() + "px" });
+        $("#extendMovie").removeClass("invisible-fix"); // remove visibility: hidden (movie, theater, button)
+        $("#extendMovie").addClass("visible-fix"); // add visibility: visible (movie, theater, button)
+        if ($("#extendTheater").hasClass("visible-fix")) {
+          theaterflipout();
+          $("#extendTheater").removeClass("visible-fix");
+          $("#extendTheater").addClass("invisible-fix");
+        }
+      } else if ($("#extendMovie").hasClass("visible-fix")) {
+        document.body.style.overflowY = "scroll";
+        movieflipout();
+        $("#extendMovie").removeClass("visible-fix");
+        $("#extendMovie").addClass("invisible-fix");
+      }
+    }
+    function theaterflipin() {
+      document.getElementById("theaterpoint").style.WebkitTransform =
+        "rotate(180deg)";
+      document.getElementById("theaterpoint").style.msTransform =
+        "rotate(180deg)";
+      document.getElementById("theaterpoint").style.transform =
+        "rotate(180deg)";
+    }
+    function movieflipin() {
+      document.getElementById("moviepoint").style.WebkitTransform =
+        "rotate(180deg)";
+      document.getElementById("moviepoint").style.msTransform =
+        "rotate(180deg)";
+      document.getElementById("moviepoint").style.transform =
+        "rotate(180deg)";
+    }
+    function theaterflipout() {
+      document.getElementById("theaterpoint").style.WebkitTransform =
+        "rotate(360deg)";
+      document.getElementById("theaterpoint").style.msTransform =
+        "rotate(360deg)";
+      document.getElementById("theaterpoint").style.transform =
+        "rotate(360deg)";
+    }
+    function movieflipout() {
+      document.getElementById("moviepoint").style.WebkitTransform =
+        "rotate(360deg)";
+      document.getElementById("moviepoint").style.msTransform =
+        "rotate(360deg)";
+      document.getElementById("moviepoint").style.transform =
+        "rotate(360deg)";
+    }
+
+    $("#extendMovie").on("mousewheel DOMMouseScroll", function (event) {
+      var delta = Math.max(
+        -1,
+        Math.min(
+          1,
+          event.originalEvent.wheelDelta || -event.originalEvent.detail
+        )
+      );
+      $(this).scrollLeft($(this).scrollLeft() - delta * 40);
+      event.preventDefault();
+    });
+    $("#extendTheater").on("mousewheel DOMMouseScroll", function (event) {
+      var delta = Math.max(
+        -1,
+        Math.min(
+          1,
+          event.originalEvent.wheelDelta || -event.originalEvent.detail
+        )
+      );
+      $(this).scrollLeft($(this).scrollLeft() - delta * 40);
+      event.preventDefault();
+    });
+    function setTheater(ctrl) {
+      var TextInsideLi = ctrl.getElementsByTagName("p")[0].innerHTML;
+      if (TextInsideLi.length > 11) {
+        TextInsideLi = TextInsideLi.slice(0, 10) + "...";
+      }
+      if (document.getElementById("theatername").innerHTML === TextInsideLi) {
+        document.getElementById("theatername").innerHTML = "Select Theater";
+      } else {
+        document.getElementById("theatername").innerHTML = TextInsideLi;
+      }
+    }
+    function setMovie(ctrl) {
+      var TextInsideLi = ctrl.getElementsByTagName("p")[0].innerHTML.trim();
+      if (TextInsideLi.length > 11) {
+        TextInsideLi = TextInsideLi.slice(0, 10) + "...";
+      }
+      if (document.getElementById("moviename").innerHTML === TextInsideLi) {
+        document.getElementById("moviename").innerHTML = "Select Movie";
+      } else {
+        document.getElementById("moviename").innerHTML = TextInsideLi;
+      }
+    }
+
+    function bookingNav() {
+      if (
+        document.getElementById("theatername").innerHTML ===
+        "Select Theater" ||
+        document.getElementById("moviename").innerHTML === "Select Movie"
+      ) {
+        alert("Please Select Theater and Movie");
+      } else window.location = "process_1";
+    }
+    function bookingPop() {
+      window.location = "process_1";
+    }
+    function signInCheck() {
+      var id = document.forms["signInForm"]["id"].value;
+      var pas = document.forms["signInForm"]["password"].value;
+      if (id != "admin" || pas != "admin") {
+        alert("Invalid ID or password. Please try again.");
+      }
+    }
+  </script>
+</body>
+
+</html>

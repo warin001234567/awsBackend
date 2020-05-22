@@ -63,39 +63,27 @@ const movieSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  theater: [String],
+  theater: [
+    {
+      theatername: {
+        type: String,
+        required: true,
+      },
+      fir_imaxtime: [String],
+      sec_imaxtime: [String],
+      fir_nortime: [String],
+      sec_nortime: [String],
+    },
+  ],
+  imax: {
+    type: Boolean,
+    required: true,
+  },
+  dx: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const movie = mongoose.model("movie", movieSchema);
 module.exports = movie;
-
-// const test = new movie({
-//   title: "Test Movie",
-//   th_title: "ทดสอบ",
-//   release_date: "2020/12/24",
-//   description: "something just pop up to my mind",
-//   story:
-//     "this is a short story of the movie so it will have very long long long",
-//   cast: [
-//     { actor: "jark", character: "mainn" },
-//     { actor: "may", character: "main" },
-//   ],
-//   detail: {
-//     production: "some one",
-//     genre: ["love", "action", "comady"],
-//     runtime: "2h",
-//     rating: "PG-13",
-//     director: "May and Jark",
-//     writing: ["someone", "wwith who", "eiei jojo"],
-//   },
-//   likes: 200000000,
-//   theater: ["บางนา", " บางที่"],
-// });
-// test
-//   .save()
-//   .then(() => {
-//     console.log(test);
-//   })
-//   .catch((error) => {
-//     console.log("Error!", error);
-//   });

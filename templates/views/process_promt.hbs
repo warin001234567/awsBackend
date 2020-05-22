@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>.Ticket Payment</title>
+    <link rel="icon" type="image/png" href="resource/icon.png">
+
+    <!-- FRAMEWORK -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto+Condensed" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+<body>
+    
+    <div class="container">
+        <div id="Checkout" class="inline">
+            <h1>Scan QR Code</h1>
+
+            <form>
+                <img src="rsrc/process/qr.png" style="width:50%; margin: 8% auto; display: block;">
+                <div class="custom-control custom-checkbox checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Send a copy to my email</label>
+                </div>
+                <button id="PayButton" class="btn btn-block btn-success submit-button" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+                    <span class="align-middle">Confirm</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+<!-- Modal -->
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body" style="color: rgb(59, 59, 59); padding: 4% 4%">
+              Would you like to print ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="myFunction()">Yes</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='new.html'">No,Thanks</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+    <script>
+      
+        // PRINT
+        function myFunction() {
+          window.print();
+        }
+
+        
+        function showPop() {
+          let popup = document.querySelector('.popup');
+
+          // Add class to show on load
+          document.addEventListener('DOMContentLoaded', function(){
+          popup.classList.add('popup-animate');
+          window.print();
+        })
+
+        // Remove class and reapply to show on click
+          document.querySelector('#show').addEventListener('click', function(){
+          popup.classList.remove('popup-animate');
+          popup.classList.remove('popup-dismiss');
+          setTimeout(function(){
+            popup.classList.add('popup-animate')
+          }, 0);
+        })
+
+        // Funcion listening for Click on Add Popup
+            document.querySelector('.popup').addEventListener('click', function(e){
+            if(e.target.innerText === 'YES PLEASE'){
+              M.toast({html: 'You made a sale!!', classes: 'green'})
+            } else if(e.target.innerText === 'NO THANKS'){
+            e.target.closest('.popup').classList.add('popup-dismiss');
+            }
+        })
+        }
+        
+
+        
+
+    </script>
+
+
+    <!-- JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.js'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+
+</body>
+</html>
