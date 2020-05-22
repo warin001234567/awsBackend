@@ -63,18 +63,10 @@ const movieSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  theater: [
-    {
-      theatername: {
-        type: String,
-        required: true,
-      },
-      fir_imaxtime: [String],
-      sec_imaxtime: [String],
-      fir_nortime: [String],
-      sec_nortime: [String],
-    },
-  ],
+  fir_imaxtime: [String],
+  sec_imaxtime: [String],
+  fir_nortime: [String],
+  sec_nortime: [String],
   imax: {
     type: Boolean,
     required: true,
